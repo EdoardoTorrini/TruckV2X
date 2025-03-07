@@ -5,8 +5,25 @@
 #include <std_msgs/msg/header.hpp>
 #include <tv2x_base/timing.hpp>
 
+#include <sys/syscall.h>
+#include <linux/sched.h>
+#include <sched.h>
+
 namespace tv2x_base {
   using namespace std::chrono;
+
+  #define gettid() syscall(SYS_gettid)
+
+  struct sched_attr {
+    uint32_t size;
+    uint32_t sched_policy;
+    uint64_t sched_flags;
+    int32_t sched_nice;
+    uint32_t sched_priority;
+    uint64_t sched_runtime;
+    uint64_t sched_deadline;
+    uint64_t sched_period;
+  };
 
   class Node : public rclcpp::Node {
 
@@ -21,7 +38,14 @@ namespace tv2x_base {
 #endif
 
       protected:
+
+#ifdef USE_EDF
+        Node(const std::string& name, uint64_t period_ns, uint64_t runtime_ns, uint64_t deadline_ns);
+#else
         Node(const std::string& name);
+#endif
+        void set_edf_scheduler(uint64_t period_ns, uint64_t runtime_ns, uint64_t deadline_ns);
+        void set_affinity(int8_t cpu);
 
 #ifdef USE_EDF
       public:
