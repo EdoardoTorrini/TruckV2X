@@ -64,7 +64,7 @@ namespace tv2x_canbus_interface {
           throw std::runtime_error("Error on open CANbus socket: " + std::string(strerror(errno)));
 
         strcpy(this->m_ifr.ifr_name, this->m_interface.c_str());
-        ioctl(this->m_socket, SIOCGIFINDEX, &this->m_addr);
+        ioctl(this->m_socket, SIOCGIFINDEX, &this->m_ifr);
         memset(&this->m_addr, 0, sizeof(this->m_addr));
 
         this->m_addr.can_family = AF_CAN;

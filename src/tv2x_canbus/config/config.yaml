@@ -1,6 +1,6 @@
 /tv2x_canbus_node:
   ros__parameters:
-    interface: "can_docker0"
+    interface: "can0"
     can_filter:
       can_id: 0
       can_mask: 0
