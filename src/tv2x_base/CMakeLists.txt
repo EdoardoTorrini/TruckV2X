@@ -36,6 +36,13 @@ ament_export_dependencies(
   rclcpp
 )
 
+if (USE_EDF)
+  message("EDF scheduling ENABLED")
+  target_compile_definitions(${PROJECT_NAME} PUBLIC USE_EDF)
+else ()
+  message("EDF scheduling DISABLE")
+endif()
+
 install(
   DIRECTORY include/
   DESTINATION include

@@ -1,4 +1,6 @@
 /tv2x_canbus_node:
   ros__parameters:
-    interface: "can0"
-    bitrate: 500000
+    interface: "can_docker0"
+    can_filter:
+      can_id: 0
+      can_mask: 0

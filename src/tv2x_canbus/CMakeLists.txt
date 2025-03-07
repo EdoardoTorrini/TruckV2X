@@ -1,11 +1,13 @@
 cmake_minimum_required(VERSION 3.8)
 project(tv2x_canbus)
+set (CMAKE_CXX_STANDARD 20)
 
 if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
   add_compile_options(-Wall -Wextra -Wpedantic)
 endif()
 
 set(USE_EDF OFF)
+set(DEBUG_CAN ON)
 
 # find dependencies
 find_package(ament_cmake REQUIRED)
@@ -27,7 +29,7 @@ ament_target_dependencies(${PROJECT_NAME}
   tv2x_base
 )
 
-add_executable(tv2x_canbus_node src/main.cpp)
+add_executable(${PROJECT_NAME}_node src/main.cpp)
 
 ament_target_dependencies(${PROJECT_NAME}
   rclcpp
@@ -36,6 +38,20 @@ ament_target_dependencies(${PROJECT_NAME}
 target_link_libraries(${PROJECT_NAME}_node
   ${PROJECT_NAME}
 )
+
+if (USE_EDF)
+  message("EDF scheduling ENABLED")
+  target_compile_definitions(${PROJECT_NAME} PUBLIC USE_EDF)
+else ()
+  message("EDF scheduling DISABLE")
+endif()
+
+if (DEBUG_CAN)
+  message("DEBUG CAN scheduling ENABLED")
+  target_compile_definitions(${PROJECT_NAME} PUBLIC DEBUG_CAN)
+else()
+  message("DEBUG CAN scheduling ENABLED")
+endif()
 
 install(TARGETS
   ${PROJECT_NAME}_node
