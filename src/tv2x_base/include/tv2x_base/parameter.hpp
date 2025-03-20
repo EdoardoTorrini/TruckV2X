@@ -1,5 +1,5 @@
-#ifndef TV2X_CANBUSNODE_PARAMETERS_HPP
-#define TV2X_CANBUSNODE_PARAMETERS_HPP
+#ifndef TV2X_BASENODE_PARAMETERS_HPP
+#define TV2X_BASENODE_PARAMETERS_HPP
 
 #include <rclcpp/rclcpp.hpp>
 
@@ -11,7 +11,7 @@ template<typename T>
 struct is_std_vector<std::vector<T>> : std::true_type {};
 
 
-namespace tv2x_canbus {
+namespace tv2x_base {
 
   class Parameters {
 

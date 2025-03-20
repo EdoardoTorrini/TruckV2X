@@ -10,6 +10,7 @@
 namespace tv2x_canbus {
   using namespace std::chrono;
   using namespace tv2x_canbus_interface;
+  using namespace tv2x_base;
 
   class CANbusBridge : public tv2x_base::Node 
   {

@@ -50,7 +50,7 @@ if (DEBUG_CAN)
   message("DEBUG CAN scheduling ENABLED")
   target_compile_definitions(${PROJECT_NAME} PUBLIC DEBUG_CAN)
 else()
-  message("DEBUG CAN scheduling ENABLED")
+  message("DEBUG CAN scheduling DISABLE")
 endif()
 
 install(TARGETS

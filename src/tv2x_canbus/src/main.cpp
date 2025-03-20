@@ -5,6 +5,7 @@ void handle_signal(int signal) {
         std::cout << "Reciving SIGINT. Requesting stop." << std::endl;
 }
 
+// TODO: add the definition for the EDF_SCHEDULER
 int main(int argc, char* argv[])
 {
     signal(SIGINT, handle_signal);
