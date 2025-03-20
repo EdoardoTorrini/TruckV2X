@@ -1,0 +1,13 @@
+/tv2x_pwm_node:
+  ros__parameters:
+    generic:
+      interface: "pwmchip2"
+      period: 10000
+      duty_cycle: 1500
+    topic:
+      steerCmd: "/steer/target"
+    steer_controller:
+      rad_max: 0.35
+      rad_min: -0.35
+      duty_max: 20.0
+      duty_min: 10.0
