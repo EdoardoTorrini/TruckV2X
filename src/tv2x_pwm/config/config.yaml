@@ -2,8 +2,9 @@
   ros__parameters:
     generic:
       interface: "pwmchip2"
-      period: 10000
-      duty_cycle: 1500
+      # nanosecond
+      period: 20000000
+      duty_cycle: 1500000
     topic:
       steerCmd: "/steer/target"
     steer_controller:

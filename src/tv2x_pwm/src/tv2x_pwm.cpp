@@ -25,11 +25,10 @@ namespace pwm_node {
 
   void PWMnode::steer_callback(const ackermann_msgs::msg::AckermannDrive::SharedPtr msg) {
     float rad_target = std::clamp<float>(msg->steering_angle, this->m_rad_min, this->m_rad_max);
-    int duty = std::round(this->m_duty_min + ((rad_target - this->m_rad_min) * this->m_ratio));
+    int duty = std::round(this->m_duty_min + ((rad_target - this->m_rad_min) * this->m_ratio)) * 100000;
     RCLCPP_INFO(this->get_logger(), "tv2x_pwm: set duty cycle to %d", duty);
 
 #ifndef PWM_TEST
-    RCLCPP_INFO(this->get_logger(), "not debug");
     this->m_pwm->set_duty_cycle(duty);
 #endif
 

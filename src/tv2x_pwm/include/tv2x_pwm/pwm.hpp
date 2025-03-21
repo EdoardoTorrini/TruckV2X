@@ -55,6 +55,10 @@ namespace pwm_control {
 #ifndef PWM_TEST
         // configure pwm
         this->export_pwm();
+
+        // TODO: is used to avoid error, check if there is a better way
+        sleep(1);
+        
         this->change_period();
         this->change_duty_cycle();
         // enable pwm
