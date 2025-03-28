@@ -42,4 +42,33 @@ Servo Motor controller:
 
 
 ## Datasheet PINOUT Jetson Orin Nano
-![alt text](pinout_datasheet.png "")
+![alt text](img/pinout_datasheet.png "")
+
+## Raspberry ROS2
+* ROS2 on RaspOS [link](https://docs.ros.org/en/humble/How-To-Guides/Installing-on-Raspberry-Pi.html)
+* ROS Docker [link](https://hub.docker.com/_/ros/tags)
+* ODU-V2X [link](https://github.com/SalvatoreIandolo/ODU-V2X/tree/main)
+* 11p-on-linux [link](https://gitlab.com/hpi-potsdam/osm/g5-on-linux/11p-on-linux)
+
+## Pinout Rpi5
+![alt text](img/rpi5_pinout.jpg "")
+
+## Raspberry Workflow
+```bash
+$ sudo apt install minicom tmux vim software-properties-common
+$ sudo date --set "..."
+```
+
+Installation of Docker on rpi5_pinout
+```bash
+$ sudo apt update && sudo apt upgrade -y
+$ sudo apt-get install ca-certificates curl
+$ sudo install -m 0755 -d /etc/apt/keyrings
+$ sudo curl -fsSL https://download.docker.com/linux/raspbian/gpg -o /etc/apt/keyrings/docker.asc
+$ sudo chmod a+r /etc/apt/keyrings/docker.asc
+$ echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/raspbian $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+$ sudo apt update
+$ sudo apt update
+$ sudo apt install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+$ sudo usermod -aG docker "$USER"
+```
