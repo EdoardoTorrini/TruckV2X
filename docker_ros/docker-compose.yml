@@ -1,0 +1,10 @@
+services:
+  ros:
+    build: .
+    network_mode: "host"
+    devices:
+      - "/dev/ttyACM0:/dev/ttyACM0"
+    volumes:
+      - "/home/riccio/Documenti/ros_env:/ros_env"
+    stdin_open: true
+    tty: true
