@@ -1,0 +1,8 @@
+/tv2x_bridge:
+  ros__parameters:
+    general:
+      v2x_interface: "wlan1"
+      asn_file: "/home/mmr/aces/TruckV2X/src/tv2x_bridge/ITS-Container.asn"
+    topic:
+      cam: "/v2x/cam"
+      denm: "/v2x/denm"
