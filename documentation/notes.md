@@ -27,7 +27,7 @@ Enable NAT Forwarding using `iptables`
 ```bash
 $ sudo iptables -t nat -A POSTROUTING -o internet0 -j MASQUERADE
 $ sudo iptables -A FORWARD -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
-$ iptables -A FORWARD -i net0 -o internet0 -j ACCEPT
+$ sudo iptables -A FORWARD -i net0 -o internet0 -j ACCEPT
 ```
 
 ## Pulse Width Modulation
@@ -61,13 +61,12 @@ $ sudo date --set "..."
 
 Installation of Docker on rpi5_pinout
 ```bash
-$ sudo apt update && sudo apt upgrade -y
+$ sudo apt-get update
 $ sudo apt-get install ca-certificates curl
 $ sudo install -m 0755 -d /etc/apt/keyrings
-$ sudo curl -fsSL https://download.docker.com/linux/raspbian/gpg -o /etc/apt/keyrings/docker.asc
+$ sudo curl -fsSL https://download.docker.com/linux/debian/gpg -o /etc/apt/keyrings/docker.asc
 $ sudo chmod a+r /etc/apt/keyrings/docker.asc
-$ echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/raspbian $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
-$ sudo apt update
+$ echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/debian $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 $ sudo apt update
 $ sudo apt install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 $ sudo usermod -aG docker "$USER"
