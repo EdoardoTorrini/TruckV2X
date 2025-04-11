@@ -22,6 +22,45 @@ def packet_callback(packet):
 sniff(iface="wlan1", prn=packet_callback, count=10)
 ```
 
+## Message CAM Example
+```json
+{
+    'header': {
+        'protocolVersion': 17, 
+        'messageID': 0, 
+        'stationID': 4043382864
+    }, 
+    'cam': {
+        'generationDeltaTime': 512, 
+        'camParameters': {
+            'basicContainer': {
+                'stationType': 3, 
+                'referencePosition': {
+                    'latitude': -631039776, 
+                    'longitude': -1705256010, 
+                    'positionConfidenceEllipse': {
+                        'semiMajorConfidence': 520, 
+                        'semiMinorConfidence': 2632, 
+                        'semiMajorOrientation': 0
+                    }, 
+                    'altitude': {
+                        'altitudeValue': 149208, 
+                        'altitudeConfidence': 'alt-200-00'
+                    }
+                }
+            }, 
+            'highFrequencyContainer': ('rsuContainerHighFrequency', {})
+        }
+    }
+}
+```
+For checking the frequency where the interface operates:
+```bash
+$ iwlist wlan1 channel
+```
+
+Il file in cui è incluso il di configurazione dell'iP statico è: `/etc/NetworkManager/system-connections/Connessione\ via\ cavo\ 1.nmconnection`
+
 Access on rpi `riccio:4316`
 
 On raspberry to enable the bridge on pc:
