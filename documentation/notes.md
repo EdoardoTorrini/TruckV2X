@@ -28,6 +28,8 @@ Enable NAT Forwarding using `iptables`
 $ sudo iptables -t nat -A POSTROUTING -o internet0 -j MASQUERADE
 $ sudo iptables -A FORWARD -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
 $ sudo iptables -A FORWARD -i net0 -o internet0 -j ACCEPT
+$ sudo iptables -L -n -v --line-numbers
+$ sudo ip route add default via [ip]
 ```
 
 ## Pulse Width Modulation

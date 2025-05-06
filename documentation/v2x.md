@@ -79,3 +79,16 @@ $ sudo cgps -s
 ```bash
 $ docker run -it --rm --device=/dev/ttyACM0 --net=host ros:humble-ros-core
 ```
+
+Alcuni link interessanti:
+* https://man.archlinux.org/man/iw.8: doc di iw
+* roba su capabilities: https://linux.die.net/man/7/capabilities e https://unix.stackexchange.com/questions/389879/how-to-set-capabilities-with-setcap-command
+* roba su GPS: https://www.rfwireless-world.com/terminology/other-wireless/gps-nmea-sentences e https://pypi.org/project/pynmeagps/
+
+Per comunicare V2X su wlan1 (rpi) bisogna dare le capabiliets a python:
+```bash
+$ getcap /usr/bin/python3.13
+/usr/bin/python3.13 cap_net_raw=eip
+
+sudo setcap 'cap_net_raw=eip' file_name
+```
