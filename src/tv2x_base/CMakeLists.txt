@@ -12,20 +12,29 @@ set(USE_EDF OFF)
 find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(std_msgs REQUIRED)
+find_package(sensor_msgs REQUIRED)
+find_package(rosidl_default_generators REQUIRED)
 
 include_directories(include)
 include_directories(${CMAKE_CURRENT_LIST_DIR})
 
-add_library(${PROJECT_NAME} SHARED
+add_library(${PROJECT_NAME}_lib SHARED
   src/tv2x_base.cpp
 )
 
-ament_target_dependencies(${PROJECT_NAME}
+rosidl_generate_interfaces(${PROJECT_NAME}
+  "msg/NavSatHeading.msg"
+  "msg/GpsSpeed.msg"
+  # Add custom msg dependecies to standard ROS2 msgs
+  DEPENDENCIES std_msgs sensor_msgs
+ )
+
+ament_target_dependencies(${PROJECT_NAME}_lib
   rclcpp
   std_msgs
 )
 
-target_include_directories(${PROJECT_NAME}
+target_include_directories(${PROJECT_NAME}_lib
   PUBLIC
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
   $<INSTALL_INTERFACE:include>
@@ -38,7 +47,7 @@ ament_export_dependencies(
 
 if (USE_EDF)
   message("EDF scheduling ENABLED")
-  target_compile_definitions(${PROJECT_NAME} PUBLIC USE_EDF)
+  target_compile_definitions(${PROJECT_NAME}_lib PUBLIC USE_EDF)
 else ()
   message("EDF scheduling DISABLE")
 endif()
@@ -49,7 +58,7 @@ install(
 )
 
 install(
-  TARGETS ${PROJECT_NAME}
+  TARGETS ${PROJECT_NAME}_lib
   EXPORT export_${PROJECT_NAME}
   LIBRARY DESTINATION lib
   ARCHIVE DESTINATION lib
