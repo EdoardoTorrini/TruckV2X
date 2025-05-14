@@ -7,3 +7,5 @@
     topic:
       cam: "/v2x/cam"
       denm: "/v2x/denm"
+      cam: "/v2x/gps_speed"
+      denm: "/v2x/nav_sat_heading"
