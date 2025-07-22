@@ -1,9 +1,6 @@
 /tv2x_canbus_node:
   ros__parameters:
     generic:
-      # nanosecond
-      period: 20000000
-      duty_cycle: 1500000
       interface: "can_docker0"
     can_filter:
       can_id: 0
