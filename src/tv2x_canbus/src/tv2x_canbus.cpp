@@ -4,7 +4,7 @@
 namespace tv2x_canbus {
 
   CANbusBridge::CANbusBridge() : 
-    tv2x_base::Node("tv2x_canbus_node"), m_interface(Parameters(this).get<std::string>("interface", "can0")),
+    tv2x_base::Node("tv2x_canbus_node"), m_interface(Parameters(this, "general").get<std::string>("interface", "can0")),
     m_can_id(Parameters(this, "can_filter").get<int>("can_id", 0u)),
     m_can_mask(Parameters(this, "can_filter").get<int>("can_mask", 0u)) {
     
@@ -33,7 +33,7 @@ namespace tv2x_canbus {
     try {
       this->m_canbus->write_msg(tx_frame);
     } catch (...) { RCLCPP_ERROR(this->get_logger(), "tv2x_canbus_node: %s", strerror(errno)); }
-    RCLCPP_INFO(this->get_logger(), "exit from timer");
+      RCLCPP_INFO(this->get_logger(), "exit from timer");
     }
 #endif
 
