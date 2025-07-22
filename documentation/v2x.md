@@ -62,6 +62,7 @@ $ iwlist wlan1 channel
 Il file in cui è incluso il di configurazione dell'iP statico è: `/etc/NetworkManager/system-connections/Connessione\ via\ cavo\ 1.nmconnection`
 
 Access on rpi `riccio:4316`
+otherwise `user:pwd`
 
 On raspberry to enable the bridge on pc:
 ```bash
@@ -91,4 +92,15 @@ $ getcap /usr/bin/python3.13
 /usr/bin/python3.13 cap_net_raw=eip
 
 sudo setcap 'cap_net_raw=eip' file_name
+```
+
+If on the raspberry is not enable the wlan1 try:
+```bash
+sudo ip link set wlan0 down
+sudo iw dev wlan0 set type ocb
+sudo ip link set wlan0 up
+sudo iw dev wlan0 ocb join 5900 10MHZ
+sudo ip address add 10.1.1.13/24 brd + dev wlan0
+sudo iw dev wlan0 interface add wlan1 type monitor
+sudo ifconfig wlan1 up
 ```
