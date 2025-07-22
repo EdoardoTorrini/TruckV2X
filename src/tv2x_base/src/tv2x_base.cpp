@@ -8,7 +8,6 @@ namespace tv2x_base {
     auto topic = name + "/heartbit";
     this->m_heartbit = this->create_publisher<std_msgs::msg::Header>(topic, 1);
     this->set_edf_scheduler(period_ns, runtime_ns, deadline_ns);
-    this->m_timer = this->create_wall_timer(100ms, std::bind(&Node::heartbit_callback, this));
   }
 #else
   Node::Node(const std::string& name) : rclcpp::Node(name), m_frame_id(name) {
