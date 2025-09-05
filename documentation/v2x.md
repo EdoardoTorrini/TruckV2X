@@ -104,3 +104,14 @@ sudo ip address add 10.1.1.13/24 brd + dev wlan0
 sudo iw dev wlan0 interface add wlan1 type monitor
 sudo ifconfig wlan1 up
 ```
+
+Per configurare l'indirizzo iP statico in una scheda dove il partizionamento si divide in `bootfs` e `rootfs` basta andare a modificare il file `/boot/cmdline.txt` e appendere in coda:
+
+```
+ip=192.168.0.5::192.168.0.1:255.255.255.0:rpi:eth0:off
+```
+
+dove:
+* `192.168.0.5` è l'indirizzo iP che si vuole impostare
+* `192.168.0.1` è il gateway
+* `255.255.255.0` è la subnet mask 
