@@ -18,9 +18,16 @@ RUN apt update && \
 	python3-argcomplete \
 	ros-dev-tools \
 	ros-humble-rosbag2-storage-mcap \
-    python3-pip
+    python3-pip \
+	iputils-ping \
+	net-tools \
+	tcpdump
 
 COPY ./requirements.txt /tmp/requirements.txt
 RUN python3 -m pip install -r ./tmp/requirements.txt
+
+RUN curl -sSL https://github.com/EdoardoTorrini/pyv2x/releases/download/pyv2x-v0.0.1-beta/pyv2x.whl -o /tmp/pyv2x-0.0.1-py3-none-any.whl && \
+    python3 -m pip install /tmp/pyv2x-0.0.1-py3-none-any.whl && \
+    rm /tmp/pyv2x-0.0.1-py3-none-any.whl
 
 CMD ["/bin/bash"]

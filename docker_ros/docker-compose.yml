@@ -2,9 +2,10 @@ services:
   ros:
     build: .
     network_mode: "host"
-    devices:
-      - "/dev/ttyACM0:/dev/ttyACM0"
+    # devices:
+    #   - "/dev/ttyACM0:/dev/ttyACM0"
     volumes:
-      - "/home/riccio/Documenti/ros_env:/ros_env"
+      - "/home/user/Documenti/docker_ros/ros2_env:/ros2_env"
+      - "/dev/shm:/dev/shm"
     stdin_open: true
     tty: true

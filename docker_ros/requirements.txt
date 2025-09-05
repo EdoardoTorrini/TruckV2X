@@ -1,2 +1,5 @@
 asn1tools
 scapy
+serial
+pynmeagps
+typeguard

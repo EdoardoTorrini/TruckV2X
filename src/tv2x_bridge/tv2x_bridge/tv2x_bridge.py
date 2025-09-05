@@ -84,7 +84,7 @@ def get_mac(interface: str) -> str:
     if not os.path.exists(path):
         return "00:00:00:00:00:00"
     
-    with open(path, "r+") as f:
+    with open(path, "r") as f:
         mac = f.read().strip()
     
     return mac
